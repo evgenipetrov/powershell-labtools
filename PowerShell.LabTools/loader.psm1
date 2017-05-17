@@ -15,5 +15,5 @@
 . $PSScriptRoot\Set-LTAutologon.ps1
 . $PSScriptRoot\Set-LTRunOnceCommand.ps1
 . $PSScriptRoot\Set-LTRunOnceScript.ps1
-. $PSScriptRoot\Enable-LTRunEverythingAsAdministrator
-. $PSScriptRoot\Join-LTDomainComputer
+. $PSScriptRoot\Enable-LTRunEverythingAsAdministrator.ps1
+. $PSScriptRoot\Join-LTDomainComputer.ps1
