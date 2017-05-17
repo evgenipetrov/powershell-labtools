@@ -1,4 +1,4 @@
-﻿function Set-LBRunOnceScript
+﻿function Set-LTRunOnceScript
 {
   #Content
   param
@@ -9,5 +9,5 @@
   )
   
   $command = 'powershell.exe -file {0}' -f $LiteralPath
-  Set-LBRunOnceCommand -Command $command
+  Set-LTRunOnceCommand -Command $command
 }

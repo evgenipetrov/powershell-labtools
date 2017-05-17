@@ -1,4 +1,4 @@
-﻿function Add-LBUser
+﻿function Add-LTUser
 {
   #Content
   param
@@ -20,22 +20,11 @@
     $Password
   )
   
-  try
-  {
-    # Content
-  }
-  catch
-  {
-    "Error was $_"
-    $line = $_.InvocationInfo.ScriptLineNumber
-    "Error was in Line $line"
-  }
-  
   if ((Get-ADUser -Filter {
         UserPrincipalName -eq "$Upn"
-  }) -ne $null)
+  }) -eq $null)
   {
     $secPassword = ConvertTo-SecureString -String $Password -AsPlainText -Force
-    New-ADUser -Name $DisplayName -SamAccountName $SamAccountName -UserPrincipalName $Upn -AccountPassword $secPassword -PasswordNeverExpires -Enabled
+    New-ADUser -Name $DisplayName -SamAccountName $SamAccountName -UserPrincipalName $Upn -AccountPassword $secPassword -PasswordNeverExpires $true -Enabled $true
   }
 }

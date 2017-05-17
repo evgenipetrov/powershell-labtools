@@ -1,4 +1,4 @@
-﻿function Set-LBAutologon{
+﻿function Set-LTAutologon{
     param(
         [string]$Username,
         [string]$Password

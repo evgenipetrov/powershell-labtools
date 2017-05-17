@@ -1,4 +1,4 @@
-﻿function Set-LBRunOnceCommand{
+﻿function Set-LTRunOnceCommand{
     param(
         [string]$Command,
         [bool]$Enabled=$true

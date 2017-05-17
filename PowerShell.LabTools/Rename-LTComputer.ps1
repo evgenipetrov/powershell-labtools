@@ -1,4 +1,4 @@
-﻿function Rename-LBComputer
+﻿function Rename-LTComputer
 {
   #Content
   param

@@ -1,4 +1,4 @@
-﻿function Add-LBDomainContoller
+﻿function Add-LTDomainContoller
 {
   param(
     [string]$DomainName,

@@ -29,7 +29,7 @@ CompanyName = 'Administrator'
 Copyright = '(c) 2017 Administrator. All rights reserved.'
 
 # Module Description
-Description = 'A PowerShell Module for building training labs.'
+Description = 'A PowerShell Module for building labs.'
 
 # Minimum PowerShell Version Required
 PowerShellVersion = ''
