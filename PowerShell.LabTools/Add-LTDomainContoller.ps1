@@ -16,11 +16,12 @@
   #promote domain controller
   try
   {
-    $adComputer = Get-ADComputer -Identity $env:COMPUTERNAME
+    $adComputer = Get-ADComputer -Identity $env:COMPUTERNAME -ErrorAction Stop
   }
   catch
   {
-    $secureString = ConvertTo-SecureString -String $SafeModeAdministratorPassword -AsPlainText -Force
+    try{
+        $secureString = ConvertTo-SecureString -String $SafeModeAdministratorPassword -AsPlainText -Force
     Import-Module -Name ADDSDeployment
     Install-ADDSForest `
     -CreateDnsDelegation:$false `
@@ -36,5 +37,10 @@
     -Force:$true `
     -SafeModeAdministratorPassword $secureString
     Restart-Computer
+    }catch{
+        "Error was $_"
+        $line = $_.InvocationInfo.ScriptLineNumber
+        "Error was in Line $line"
+    }
   }
 }
