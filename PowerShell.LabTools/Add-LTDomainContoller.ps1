@@ -6,23 +6,15 @@
     [string]$SafeModeAdministratorPassword
   )
     
-  #install binaries
-  $feature = Get-WindowsFeature -Name AD-Domain-Services
-  if(-Not $feature.Installed)
-  {
-    Add-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools -Restart
-  }
+  if($env:COMPUTERNAME -eq $env:USERDOMAIN){
+      #install binaries
+      $feature = Get-WindowsFeature -Name AD-Domain-Services
+      if(-Not $feature.Installed)
+      {
+        Add-WindowsFeature -Name AD-Domain-Services -IncludeManagementTools -Restart
+      }
 
-  #promote domain controller
-  try
-  {
-    $adComputer = Get-ADComputer -Identity $env:COMPUTERNAME -ErrorAction Stop
-  }
-  catch
-  {
-    try
-    {
-        $secureString = ConvertTo-SecureString -String $SafeModeAdministratorPassword -AsPlainText -Force
+      $secureString = ConvertTo-SecureString -String $SafeModeAdministratorPassword -AsPlainText -Force
         Import-Module -Name ADDSDeployment
         Install-ADDSForest `
         -CreateDnsDelegation:$false `
@@ -38,12 +30,5 @@
         -Force:$true `
         -SafeModeAdministratorPassword $secureString
         Restart-Computer
-    }
-    catch
-    {
-        "Error was $_"
-        $line = $_.InvocationInfo.ScriptLineNumber
-        "Error was in Line $line"
-    }
-  }
+  }  
 }
