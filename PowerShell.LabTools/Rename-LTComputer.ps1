@@ -10,8 +10,8 @@
   
   try
   {
-    Rename-Computer -NewName $NewName -ErrorAction Stop
-    Restart-Computer -Force
+    Rename-Computer -NewName $NewName -Restart -ErrorAction Stop
+    Start-Sleep 30
   }
   catch
   {
